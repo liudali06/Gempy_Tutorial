@@ -2,6 +2,7 @@
 import gempy as gp
 
 #importing auxiliary libraries
+import gempy.core.data_modules.geometric_data
 import numpy as np
 import pandas as pd
 
@@ -91,5 +92,25 @@ new_color = {'foo': '#ff8000', 'foo5': '#4741be'}
 
 """数据的处理"""
 """表面点"""
+"""这两个DF将包含接口和方向上每个点的单独信息。此表的某些属性是从下面的df映射获得的"""
+"""用特定的方法去操作接口数据的数据子项。在没有参数的情况下进行初始化，从而为数据的来源提供灵活性"""
+surfaces_points = gempy.core.data_modules.geometric_data.SurfacePoints(surfaces)
+"""set_surface_points在DF上设置坐标和曲面列,pd.DataFrame代表生成二维、大小可变、可能异构的表格数据，
+    rand:生成6行3列的随机阵列"""
+surfaces_points.set_surface_points(pd.DataFrame(np.random.rand(6, 3))),\
+                                    ['foo', 'foo5', 'lala','foo5', 'lala', 'feeeee']
 
+"""将数据框中的series列映射到GeometricData,ID同理映射"""
+surfaces_points.map_data_from_surfaces(surfaces, 'series')
+surfaces_points.map_data_from_surfaces(surfaces, 'id')
+surfaces_points.map_data_from_surfaces(series, 'order_series')
+surfaces_points.sort_table()
+
+"""方向点数据结构"""
+orientations = gempy.core.data_modules.geometric_data.Orientations(surfaces)
+
+"""设置通过极向量的值："""
+orientations.set_orientations(np.random.ran(6, 3)*10,
+                              np.random.rand(6, 3),
+                              surface=['foo','foo5','lala','foo5','lala', 'feeeee'])
 
