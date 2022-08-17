@@ -70,3 +70,26 @@ surfaces.set_basement()
 """设置阵列的值"""
 """我们可以使用set_surface_values代替添加，这会删除之前的属性并添加新的属性"""
 surfaces.set_surfaces_values([[2, 2, 2, 6],[2, 2, 1, 8]], ['val_foo','val2_foo'])
+
+"""将series映射到地层"""
+"""将一个series映射到一个编队，可以通过传递一个dict来实现"""
+"""如果对象不存在系列Seires，将会发出警告，并将这些编队设置为NaNS"""
+d = {"foo7": 'foo', "booX":('foo2', 'f225,', 'fee' )}
+surfaces.map_series(d)
+"""类别的一个优点在于它们是有序的，所以可以通过series和formation去整理DF"""
+
+"""修改表面的名称"""
+surfaces.rename_surfaces({'foo2': 'lala'})
+surfaces.df.loc[2,'val_foo'] = 22
+
+
+"""表面DF包含一个用于显示表面颜色的列，在需要更改颜色时可以今天调用"""
+surfaces.colors.change_colors()
+"""在已知想要使用的颜色时，可以使用表面的名称通过十六进制颜色字符串的字典来更新它们"""
+new_color = {'foo': '#ff8000', 'foo5': '#4741be'}
+
+
+"""数据的处理"""
+"""表面点"""
+
+
